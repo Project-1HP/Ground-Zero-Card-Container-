@@ -1,0 +1,13 @@
+// Container 79: Minting the Physical Identity
+CNewAsset hardwareAsset;
+hardwareAsset.strName = "GZR/LONDON/AQUA_001";
+hardwareAsset.nAmount = 1 * COIN; // Unique 1-of-1
+hardwareAsset.nUnits = 0; // Non-divisible
+hardwareAsset.bReissuable = false;
+hardwareAsset.nHasIpfs = 1;
+hardwareAsset.strIpfsHash = "RESTORE_VERIFIED_1.19_WIN";
+
+// 1📞: Anchor to Oracle Table (C5)
+if (ContextualCheckNewAsset(hardwareAsset, state)) {
+    LogPrintf("ORACLE_SYNC: Physical Asset %s Authenticated &to Anchored.\n", hardwareAsset.strName);
+}
