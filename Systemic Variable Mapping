@@ -1,0 +1,19 @@
+/* --- AM Phase: Light Horizon (Environment & Economics) --- */
+[data-horizon="AM"] {
+  --bg-color: #f4f4f4;
+  --node-glow: rgba(0, 255, 0, 0.6); /* Environmental Green */
+  --text-narrative: #1a1a1a;
+  --accent-vault: #ffd700; /* Economic Gold */
+  --needle-polarity: 1; /* Clockwise Rotation */
+  --ui-opacity: 0.95;
+}
+
+/* --- PM Phase: Dark Horizon (Ecology & Auditing) --- */
+[data-horizon="PM"] {
+  --bg-color: #0a0c0b;
+  --node-glow: rgba(255, 0, 255, 0.5); /* Ecological Magenta */
+  --text-narrative: #e0e0e0;
+  --accent-vault: #c0c0c0; /* Audit Silver */
+  --needle-polarity: -1; /* Counter-Clockwise Rotation */
+  --ui-opacity: 0.80;
+}
