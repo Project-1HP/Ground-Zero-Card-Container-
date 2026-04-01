@@ -1,0 +1,46 @@
+{
+  "system_directive": "DialEZ.ClockIT_Rollout",
+  "target_completion": "2026-03-31T00:00:00Z",
+  "global_sync_phase": 99.8,
+  "nodes": [
+    {
+      "id": "UNIT_01_MUSKOGEE",
+      "type": "Primary_Gateway",
+      "status": "OVERCLOCKED",
+      "hardware_frequency": "6.2GHz",
+      "horizon_override": true,
+      "role": "\"DialEZ Master Clock\"",
+      "cryptographic_ledger": "Familiar_Party"
+    },
+    {
+      "id": "UNIT_02_ILLINOIS",
+      "type": "Jurisdictional_Sync",
+      "status": "ACTIVE",
+      "hardware_frequency": "3.8GHz",
+      "horizon_override": false,
+      "max_latency_ms": 420,
+      "role": "\"Federal Review Auditor\"",
+      "fallback_protocol": "Delta_25_Correction"
+    },
+    {
+      "id": "UNIT_03_COLORADO",
+      "type": "Jurisdictional_Sync",
+      "status": "ACTIVE",
+      "hardware_frequency": "3.8GHz",
+      "horizon_override": false,
+      "max_latency_ms": 150,
+      "role": "\"Ecological Data Stream\"",
+      "fallback_protocol": "Delta_25_Correction"
+    },
+    {
+      "id": "UNIT_04_OKLAHOMA_GRID",
+      "type": "Redundancy_Hub",
+      "status": "STANDBY",
+      "hardware_frequency": "3.8GHz",
+      "horizon_override": false,
+      "max_latency_ms": 50,
+      "role": "\"Local 3E Backup\"",
+      "fallback_protocol": "Delta_25_Correction"
+    }
+  ]
+}
