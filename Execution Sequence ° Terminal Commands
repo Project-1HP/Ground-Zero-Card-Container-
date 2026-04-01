@@ -1,0 +1,12 @@
+# 1. Initialize Muskogee Gateway (Zero-Point Origin)
+./deus_exknox --deploy --target UNIT_01_MUSKOGEE --force-overclock 6.2 --ledger Familiar_Party
+
+# 2. Open 1📞 Channels to Regional Sync Nodes
+./deus_exknox --link --source UNIT_01_MUSKOGEE --dest UNIT_02_ILLINOIS --max-latency 420
+./deus_exknox --link --source UNIT_01_MUSKOGEE --dest UNIT_03_COLORADO --max-latency 150
+
+# 3. Establish Local Grid Redundancy 
+./deus_exknox --link --source UNIT_01_MUSKOGEE --dest UNIT_04_OKLAHOMA_GRID --standby
+
+# 4. Trigger 0➕ Protocol Initialization
+./deus_exknox --start-horizon-cycle
