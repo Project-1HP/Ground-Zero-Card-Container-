@@ -1,0 +1,11 @@
+.ground-zero-browser {
+  background-color: var(--bg-color);
+  transition: background-color 2.2551s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: contrast(var(--ui-opacity));
+}
+
+.logic-needle {
+  transform: rotate(calc(var(--current-phi) * var(--needle-polarity)));
+  border-left: 2px solid var(--accent-vault);
+  box-shadow: 0 0 15px var(--node-glow);
+}
