@@ -1,0 +1,50 @@
+import cv2
+import numpy as np
+import pandas as pd
+
+def extract_orbital_vectors(image_path):
+    # 1. Load and Preprocess
+    image = cv2.imread(image_path)
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    blurred = cv2.medianBlur(gray, 5)
+    
+    # 2. Execute Hough Circle Transform for Node Detection
+    # Parameters tuned for recursive orbital clusters
+    circles = cv2.HoughCircles(
+        blurred, 
+        cv2.HOUGH_GRADIENT, 
+        dp=1.2, 
+        minDist=20, 
+        param1=50, 
+        param2=30, 
+        minRadius=5, 
+        maxRadius=500
+    )
+    
+    node_data = []
+    
+    if circles is not None:
+        circles = np.uint16(np.around(circles))
+        for i in circles[0, :]:
+            x, y, r = i
+            # Sample color at the node center
+            bgr_color = image[y, x]
+            hex_color = '#{:02x}{:02x}{:02x}'.format(bgr_color[2], bgr_color[1], bgr_color[0])
+            
+            node_data.append({
+                'center_x': int(x),
+                'center_y': int(y),
+                'radius': int(r),
+                'hex_color': hex_color
+            })
+            
+    # 3. Structure and Export to CSV
+    df = pd.DataFrame(node_data)
+    df = df.sort_values(by=['center_y', 'center_x']).reset_index(drop=True)
+    df.to_csv('orbital_coordinates.csv', index=False)
+    
+    return df
+
+# Execute extraction
+results = extract_orbital_vectors('22551.jpg')
+print(f"Extraction Complete: {len(results)} nodes mapped to orbital_coordinates.csv")
