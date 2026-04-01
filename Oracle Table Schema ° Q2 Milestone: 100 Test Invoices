@@ -1,0 +1,20 @@
+{
+  "table_id": "ORACLE_TABLE_TEST_100",
+  "project": "+1HP_Humanitarian_Project",
+  "deployment_date": "2026-03-31",
+  "schema": {
+    "invoice_id": "UUID_V4",
+    "timestamp": "DEUS_EXKNOX_PHI",
+    "jurisdiction": "ISO_3166_2_US",
+    "3E_pillar": ["Environment", "Economics", "Ecology"],
+    "value_stake": "decimal(18,8)",
+    "status": {
+      "type": "string",
+      "enum": ["PENDING", "MINTED", "DELTA_25_REVIEW"]
+    },
+    "security": {
+      "card_conduit_hash": "SHA256",
+      "horizon_lock": "AM_ONLY"
+    }
+  }
+}
