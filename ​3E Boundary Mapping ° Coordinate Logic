@@ -1,0 +1,22 @@
+import numpy as np
+
+def map_3e_pillars(df, center=(395, 309)):
+    # Calculate angle relative to center
+    df['dx'] = df['center_x'] - center[0]
+    df['dy'] = df['center_y'] - center[1]
+    df['angle'] = np.degrees(np.arctan2(df['dy'], df['dx'])) % 360
+    
+    # Assign Pillars based on angular boundaries
+    conditions = [
+        (df['angle'] >= 0) & (df['angle'] <= 120),
+        (df['angle'] > 120) & (df['angle'] <= 240),
+        (df['angle'] > 240) & (df['angle'] <= 360)
+    ]
+    values = ['Environment', 'Economics', 'Ecology']
+    df['3E_Pillar'] = np.select(conditions, values)
+    
+    return df[['center_x', 'center_y', '3E_Pillar', 'hex_color']]
+
+# Map pillars for the Q2 2026 Roadmap
+mapped_boundaries = map_3e_pillars(results)
+mapped_boundaries.to_csv('3e_boundary_map.csv', index=False)
