@@ -1,0 +1,27 @@
+// Map CSV Coordinates to 3D Space
+function renderOrbitalCluster(data) {
+  data.forEach(node => {
+    const geometry = new THREE.SphereGeometry(node.radius / 10, 32, 32);
+    const material = new THREE.MeshPhongMaterial({
+      color: node.hex_color,
+      transparent: true,
+      opacity: 0.7,
+      emissive: node.hex_color,
+      emissiveIntensity: 0.5
+    });
+    
+    const mesh = new THREE.Mesh(geometry, material);
+    
+    // Convert 2D Vector to 3D Spiral
+    const angle = (node.angle * Math.PI) / 180;
+    const distance = Math.sqrt(Math.pow(node.dx, 2) + Math.pow(node.dy, 2));
+    
+    mesh.position.set(
+      distance * Math.cos(angle), // X
+      distance * Math.sin(angle), // Y
+      node.radius * 2             // Z (Depth based on Node Scale)
+    );
+    
+    scene.add(mesh);
+  });
+}
