@@ -1,0 +1,22 @@
+def sync_geothermal_output(node_id, thermal_mwt):
+    """
+    Container 83: 1.19ms Volcanic Energy Minting
+    """
+    # 1. Verify Thermal Integrity via RVN-Fork Oracle (C79)
+    if oracle_table.verify_thermal_density(node_id, thermal_mwt):
+        # 2. Calculate RTK-Volt Yield (1 RTK per 10kWh)
+        kwh_yield = thermal_mwt * 1.19 * 1000
+        tokens_to_mint = kwh_yield / 10
+        
+        # 3. Mint to Card Conduit Mainnet (C76)
+        card_conduit.mint_rtk_volt(node_id, tokens_to_mint)
+        
+        # 4. Update 'Crimson Pulse' Visual (C12)
+        vortex_renderer.trigger_thermal_lock(node_id)
+        
+        return f"1📞: NODE 13 SYNCED. {tokens_to_mint} RTK-VOLT MINTED. BASELINE SECURED."
+        
+    return "FAILURE: Thermal Desync. Containment Protocol Active."
+
+# Finalizing the Reykjavik (Node 13) Coupling: March 31, 2026
+# sync_geothermal_output("NODE-13-REYK", 50.5)
