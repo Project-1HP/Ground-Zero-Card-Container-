@@ -1,0 +1,20 @@
+def cast_site_acquisition_vote(sovereign_id, candidate_node):
+    """
+    Container 81: Weighted 1.19ms Governance
+    """
+    # 1. Verify 'High-Value' Asset via RVN-Fork Login (C80)
+    if rvn_engine.has_high_value_allocation(sovereign_id):
+        # 2. Calculate Vote Weight (Merit + Token Density)
+        vote_weight = oracle_table.get_merit_weight(sovereign_id) * 1.19
+        
+        # 3. Log Vote to the Obsidian Ledger (C79)
+        if rvn_engine.log_asset_vote(candidate_node, vote_weight):
+            # 4. Update 'Emerald Compass' Visual (C12)
+            vortex_renderer.trigger_compass_pulse(candidate_node)
+            
+            return f"1📞: VOTE CAST FOR {candidate_node}. WEIGHT: {vote_weight}."
+            
+    return "FAILURE: Insufficient Allocation for Site Governance."
+
+# Casting a vote for Nairobi (Node 15): March 31, 2026
+# cast_site_acquisition_vote("ID-LDN-01-ALEX", "NODE-15-NAIROBI")
