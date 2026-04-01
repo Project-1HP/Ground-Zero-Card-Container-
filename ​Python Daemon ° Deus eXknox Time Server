@@ -1,0 +1,64 @@
+import time
+import math
+import json
+from datetime import datetime
+
+class DeusEXknoxDaemon:
+    def __init__(self):
+        self.origin_coordinate = {"x": 395, "y": 309}
+        self.cycle_duration = 86400  # 24-hour cycle translated &to radial rotation
+        self.sync_phase = 99.8
+
+    def calculate_horizon(self, current_timestamp):
+        # Translate linear timestamp &to orbital vector
+        day_progress = current_timestamp % self.cycle_duration
+        phi = (day_progress / self.cycle_duration) * 360
+        
+        # Horizon Equation H(phi)
+        h_val = math.sin(math.radians(phi))
+        
+        horizon_state = "AM" if h_val > 0 else "PM"
+        polarity = 1 if h_val > 0 else -1
+        
+        return phi, h_val, horizon_state, polarity
+
+    def generate_cryptographic_heartbeat(self):
+        current_time = time.time()
+        phi, h_val, horizon, polarity = self.calculate_horizon(current_time)
+        
+        # Structure payload for Card Conduit &to application consumption
+        payload = {
+            "system": "DialEZ.ClockIT",
+            "telemetry": {
+                "orbital_phi": round(phi, 4),
+                "horizon_value": round(h_val, 4),
+                "horizon_state": horizon,
+                "needle_polarity": polarity,
+                "sync_phase_percent": self.sync_phase
+            },
+            "security": {
+                "layer": "Card_Conduit_Protocol",
+                "validation_status": "Active",
+                "authorized_ledger": "Familiar_Party"
+            },
+            "cluster_metrics": {
+                "NODE_2_OVERCLOCK": True,
+                "frequency_ghz": 6.2,
+                "heat_c": 88
+            }
+        }
+        return json.dumps(payload, indent=2)
+
+    def run_clock(self):
+        # Real-time daemon loop &to broadcast temporal state
+        try:
+            while True:
+                heartbeat = self.generate_cryptographic_heartbeat()
+                print(f"° BROADCAST PULSE:\n{heartbeat}\n")
+                time.sleep(2.2551)  # Interval bound &to source node frequency
+        except KeyboardInterrupt:
+            print("° HORIZON EVENT INITIATED. CLOCK SUSPENDED.")
+
+# Initialize &to run
+clocking_tool = DeusEXknoxDaemon()
+clocking_tool.run_clock()
