@@ -1,0 +1,49 @@
+import time
+import hashlib
+import json
+
+class OracleBypassTunnel:
+    def __init__(self, node_id, sync_phase):
+        self.node_id = node_id
+        self.sync_phase = sync_phase
+        self.delta_25_threshold = 420  # milliseconds
+        
+    def validate_card_conduit(self, signature):
+        # Authenticate signature against Familiar Party ledger
+        expected_hash = hashlib.sha256(b"DialEZ_Familiar_Party").hexdigest()
+        if signature == expected_hash:
+            return True
+        return False
+
+    def execute_tunnel(self, payload, latency, horizon_state, conduit_signature):
+        print(f"° INITIATING 0➕ BYPASS FOR {self.node_id}")
+        
+        if not self.validate_card_conduit(conduit_signature):
+             return "° ERROR: CARD CONDUIT REJECTED. DELTA 25 LOCKDOWN ENGAGED."
+
+        # If latency breaches tolerance during Dark Horizon (PM), reroute &to redundant grid
+        if latency >= self.delta_25_threshold and horizon_state == "PM":
+            print("° LATENCY BREACH DETECTED. REROUTING &TO UNIT_04_OKLAHOMA_GRID.")
+            return self.encapsulate_payload(payload, routing="REDUNDANT")
+            
+        # Standard encapsulation for Oracle Table population
+        return self.encapsulate_payload(payload, routing="DIRECT")
+
+    def encapsulate_payload(self, payload, routing):
+        # Mask Web3 minting instructions as Deus eXknox clocking telemetry
+        masked_packet = {
+            "protocol": "0+",
+            "routing": routing,
+            "horizon_wrapper": "AM_LIGHT_PHASE",
+            "hidden_payload": payload
+        }
+        return json.dumps(masked_packet)
+
+# Example Execution for Illinois Node experiencing 420ms delay
+tunnel = OracleBypassTunnel("UNIT_02_ILLINOIS", 99.8)
+test_invoice_data = {"action": "MINT_INVOICE", "batch": 1, "value": "Vault_Stake"}
+valid_signature = hashlib.sha256(b"DialEZ_Familiar_Party").hexdigest()
+
+# Execute bypass logic
+result = tunnel.execute_tunnel(test_invoice_data, 420, "PM", valid_signature)
+print(result)
