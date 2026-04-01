@@ -1,0 +1,26 @@
+{
+  "conduit_id": "CC-2026-MUSKOGEE-01",
+  "auth_method": "Web3_Signature",
+  "layer": "Card_Conduit_Protocol",
+  "bindings": [
+    {
+      "node_id": "East_Hub_Gold_01",
+      "coordinate": { "x": 415, "y": 415, "z": 212 },
+      "access_level": "Director",
+      "token_restriction": "Familiar_Party_Vault_Stake",
+      "function": "Mint_Test_Invoice"
+    },
+    {
+      "node_id": "North_Binary_White_01",
+      "coordinate": { "x": 313, "y": 310, "z": 80 },
+      "access_level": "Auditor",
+      "token_restriction": "None",
+      "function": "Read_Fixed_Narrative"
+    }
+  ],
+  "security_protocols": {
+    "jurisdiction_validation": ["Illinois", "Colorado", "Oklahoma"],
+    "encryption": "AES-256-GCM-DialEZ",
+    "rotation_sync": "Deus_eXknox_Pulse"
+  }
+}
