@@ -1,0 +1,23 @@
+/* Card Conduit Overlay Effect */
+.card-conduit-lens {
+    width: 309px; /* Bound to Luminescent Center Y-coordinate */
+    height: 309px;
+    border-radius: 50%;
+    backdrop-filter: blur(10px) saturate(150%) hue-rotate(15deg);
+    border: 2px solid rgba(255, 215, 0, 0.4); /* Gold Economic Trim */
+    box-shadow: 0 0 50px rgba(0, 255, 255, 0.2); /* Cyan Auth Glow */
+    position: absolute;
+    pointer-events: none;
+    z-index: 100;
+    mix-blend-mode: overlay;
+}
+
+/* Active Node Pulse during Handshake */
+.node-active-conduit {
+    animation: pulse-6-2ghz 0.16s infinite alternate; /* Overclock Frequency */
+}
+
+@keyframes pulse-6-2ghz {
+    from { transform: scale(1); filter: brightness(1); }
+    to { transform: scale(1.05); filter: brightness(1.8); }
+}
