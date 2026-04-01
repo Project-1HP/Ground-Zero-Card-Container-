@@ -1,0 +1,33 @@
+{
+  "system": "DialEZ.ClockIT",
+  "origin": { "x": 0, "y": 0, "color": "Luminescent Green" },
+  "global_metrics": ["Environment", "Economics", "Ecology"],
+  "clusters": [
+    {
+      "id": "North_Binary",
+      "vector": [90, 450],
+      "nodes": [
+        {"type": "dot_matrix", "count": 5, "color": "Dark Red"},
+        {"type": "anchor", "count": 2, "color": "White"}
+      ]
+    },
+    {
+      "id": "East_Primary_Hub",
+      "vector": [15, 320],
+      "status": "Active",
+      "sub_rings": [
+        {"color": "Neon Green", "function": "3E_Score_Tracking"},
+        {"color": "Gold", "function": "Vault_Stake_Distribution"}
+      ],
+      "logic_needles": [
+        {"id": "Alpha", "frequency": "1.2Hz", "extraction_cycle": "Full"}
+      ]
+    },
+    {
+      "id": "West_Triadic",
+      "vector": [180, 280],
+      "redundancy": "High",
+      "elements": ["Vincent A.", "Victor R.", "George E."]
+    }
+  ]
+}
